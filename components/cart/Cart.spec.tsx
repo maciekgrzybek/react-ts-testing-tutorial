@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Comp from './Comp';
+import Cart from './Cart';
 
 test('displays hello', () => {
-  const { getByText } = render(<Comp />);
+  const { getByText } = render(<Cart />);
 
-  getByText('hello');
+  getByText('Cartman');
 });

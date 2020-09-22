@@ -1,0 +1,7 @@
+.wrapper {
+  width: 400px;
+  border-radius: 15px;
+  background-color: white;
+  overflow: hidden;
+  padding: 20px;
+}
