@@ -7,3 +7,8 @@ export interface ProductType {
   image: string;
   quantity: number;
 }
+
+export interface PromoCode {
+  name: string;
+  discount: number;
+}

@@ -4,7 +4,7 @@
   grid-template-columns: 2fr 1fr;
   row-gap: 10px;
   text-align: right;
-  padding: 30px 0 35px;
+  padding: 20px 0 20px;
 }
 
 .label {

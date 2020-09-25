@@ -19,7 +19,7 @@
   background: black;
   color: white;
   border: 0;
-  padding: 15px 40px;
+  padding: 20px 40px;
   border-radius: 10px;
   font-weight: 600;
   font-size: 18px;
@@ -30,4 +30,53 @@
 
 .place-button:hover {
   opacity: 0.8;
+}
+
+.discount {
+  background: #c7fdc7;
+  color: #0b840b;
+  text-align: center;
+  padding: 10px;
+  font-weight: 700;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.discount span {
+  display: block;
+}
+
+.discount button {
+  background: transparent;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 11px;
+}
+
+.error {
+  display: block;
+  margin-bottom: 25px;
+  color: red;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: -10px;
+}
+
+.order-finished {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  color: white;
+  font-weight: 700;
+  font-size: 26px;
 }

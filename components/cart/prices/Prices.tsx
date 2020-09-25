@@ -2,7 +2,7 @@ import styles from './Prices.module.css';
 
 interface Props {
   orderPrice: string;
-  deliveryPrice?: string;
+  deliveryPrice: string;
 }
 const Prices: React.FC<Props> = ({ orderPrice, deliveryPrice }) => {
   return (
@@ -10,9 +10,7 @@ const Prices: React.FC<Props> = ({ orderPrice, deliveryPrice }) => {
       <span className={styles.label}>Order</span>
       <span className={styles.price}>$ {orderPrice}</span>
       <span className={styles.label}>Delivery</span>
-      <span className={styles.price}>
-        $ {deliveryPrice ? deliveryPrice : '0'}
-      </span>
+      <span className={styles.price}>$ {deliveryPrice}</span>
     </div>
   );
 };

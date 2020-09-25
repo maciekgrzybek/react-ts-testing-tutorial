@@ -56,6 +56,12 @@
   color: #7d7d7d;
 }
 
+.quantity button:disabled {
+  cursor: not-allowed;
+  background: #e6e6e696;
+  color: #d8d8d8;
+}
+
 .quantity button:hover {
   box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.1);
 }
@@ -68,7 +74,21 @@
   grid-area: price;
   font-weight: 600;
   text-align: right;
-  padding-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.discount {
+  color: #c3c3c3;
+  font-weight: 400;
+  font-size: 13px;
+  display: block;
+  text-decoration: line-through;
+  position: absolute;
+  right: 0;
+  bottom: 100%;
 }
 
 .remove-button {
