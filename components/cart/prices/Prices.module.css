@@ -1,0 +1,16 @@
+.wrapper {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
+  row-gap: 10px;
+  text-align: right;
+  padding: 30px 0 35px;
+}
+
+.label {
+  color: #bdbec6;
+}
+
+.price {
+  font-weight: 700;
+}

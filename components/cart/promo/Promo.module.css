@@ -1,0 +1,32 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: auto min-content;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #f5f6f5;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.input {
+  border: 0;
+  padding: 0 10px;
+}
+
+.input::placeholder {
+  color: #d4d4d4;
+}
+
+.button {
+  background: #f5f6f5;
+  border: 0;
+  padding: 15px 40px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button:hover {
+  opacity: 0.6;
+}

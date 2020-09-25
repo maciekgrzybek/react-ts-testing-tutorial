@@ -3,5 +3,31 @@
   border-radius: 15px;
   background-color: white;
   overflow: hidden;
-  padding: 20px;
+  padding: 20px 20px 30px;
+}
+
+.in-total {
+  font-size: 24px;
+  font-weight: 900;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.place-button {
+  background: black;
+  color: white;
+  border: 0;
+  padding: 15px 40px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.place-button:hover {
+  opacity: 0.8;
 }
