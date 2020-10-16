@@ -11,6 +11,7 @@ interface Props {
   removeProduct: (string) => void;
   addProduct: (string) => void;
   subtractProduct: (string) => void;
+  freeDeliveryPrice?: number;
 }
 
 const Cart: React.FC<Props> = ({
@@ -19,6 +20,7 @@ const Cart: React.FC<Props> = ({
   removeProduct,
   addProduct,
   subtractProduct,
+  freeDeliveryPrice = 500,
 }) => {
   const [discount, setDiscount] = useState(null);
   const [promoError, setPromoError] = useState(null);
@@ -32,7 +34,8 @@ const Cart: React.FC<Props> = ({
         (discount && current.promoAvailable ? (100 - discount) / 100 : 1)
     );
   }, 0);
-  const deliveryPrice = orderPrice > 500 ? 0 : 30;
+
+  const deliveryPrice = orderPrice > freeDeliveryPrice ? 0 : 30;
   const totalPrice = (orderPrice + deliveryPrice).toFixed(2);
 
   const handlePromoCode = useCallback((code: string) => {
