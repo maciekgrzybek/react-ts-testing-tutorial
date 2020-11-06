@@ -5,7 +5,7 @@ import React, { SyntheticEvent, useCallback, useState } from 'react';
 import Prices from './prices/Prices';
 import Promo from './promo/Promo';
 
-interface Props {
+export interface Props {
   products: ProductType[];
   promoCodes: PromoCode[];
   removeProduct: (string) => void;
@@ -50,8 +50,6 @@ const Cart: React.FC<Props> = ({
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    console.table(products);
-    console.log('Total price', totalPrice);
     setOrderFinished(true);
   };
 
@@ -61,7 +59,7 @@ const Cart: React.FC<Props> = ({
         {orderFinished && (
           <div className={styles['order-finished']}>Thank you for order</div>
         )}
-        <div>
+        <ul>
           {products
             .sort((a, b) => {
               if (a.id > b.id) return 1;
@@ -78,11 +76,11 @@ const Cart: React.FC<Props> = ({
                 handleSubtract={subtractProduct}
               />
             ))}
-        </div>
+        </ul>
 
         <Prices
           orderPrice={orderPrice.toFixed(2)}
-          deliveryPrice={deliveryPrice.toFixed(2)}
+          deliveryPrice={deliveryPrice}
         />
 
         {discount ? (
@@ -95,14 +93,18 @@ const Cart: React.FC<Props> = ({
         ) : (
           <Promo handlePromoCode={handlePromoCode} />
         )}
-        {promoError && <span className={styles.error}>{promoError}</span>}
+        {promoError && (
+          <span className={styles.error} role="alert">
+            {promoError}
+          </span>
+        )}
 
         <div className={styles['in-total']}>
           In Total: <span>$ {totalPrice}</span>
         </div>
 
         <button className={styles['place-button']} type="submit">
-          Place Your Order ($ {totalPrice})
+          Place Your Order
         </button>
       </div>
     </form>

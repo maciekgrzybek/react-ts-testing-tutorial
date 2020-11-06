@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ProductType } from '../types';
 import styles from './Product.module.css';
 
-interface Props {
+export interface Props {
   product: ProductType;
   discount?: number;
   handleRemove: (string) => void;
@@ -18,22 +18,14 @@ const Product: React.FC<Props> = ({
   handleSubtract,
 }) => {
   const { image, name, color, quantity, price, id, promoAvailable } = product;
-  const [subtractDisabled, setSubtractDisabled] = useState(false);
-
   const discountAvailable = discount && promoAvailable;
   const regularPrice = quantity * price;
   const actualPrice =
     regularPrice * (discountAvailable ? (100 - discount) / 100 : 1);
+  const subtractDisabled = quantity === 1;
 
-  useEffect(() => {
-    if (quantity === 1) {
-      setSubtractDisabled(true);
-    } else {
-      setSubtractDisabled(false);
-    }
-  }, [quantity, setSubtractDisabled]);
   return (
-    <div className={styles.wrapper}>
+    <li className={styles.wrapper}>
       <div>
         <img src={image} alt={name} className={styles.image} />
       </div>
@@ -69,7 +61,7 @@ const Product: React.FC<Props> = ({
       >
         X
       </button>
-    </div>
+    </li>
   );
 };
 

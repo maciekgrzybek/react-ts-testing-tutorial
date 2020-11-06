@@ -14,6 +14,10 @@ a {
   text-decoration: none;
 }
 
+ul {
+  padding-left: 0;
+}
+
 main {
   display: flex;
   min-height: 100vh;
