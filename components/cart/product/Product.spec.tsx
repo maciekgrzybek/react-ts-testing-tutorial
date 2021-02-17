@@ -21,20 +21,24 @@ const renderComponent = (props = {}) => {
     },
   };
 };
+
 test('shows the correct name', () => {
   renderComponent();
   expect(screen.getByText(DEFAULT_PROPS.product.name)).toBeInTheDocument();
 });
+
 test('shows the correct color', () => {
   renderComponent();
   expect(screen.getByText(DEFAULT_PROPS.product.color)).toBeInTheDocument();
 });
+
 test('shows the correct price', () => {
   renderComponent();
   expect(
     screen.getByText(DEFAULT_PROPS.product.price.toString(), { exact: false })
   ).toBeInTheDocument();
 });
+
 test('shows the correct quantity', () => {
   renderComponent();
   expect(
@@ -69,7 +73,8 @@ test.each`
     }
   }
 );
-test('disables the decrease button when the quantity  equals 1', () => {
+
+test('disables the decrease button when the quantity equals 1', () => {
   const { rerender } = renderComponent();
   expect(screen.getByRole('button', { name: /\-/i })).toBeDisabled();
 
@@ -92,6 +97,7 @@ describe('fires callback on button click', () => {
     expect(DEFAULT_PROPS.handleAdd).toBeCalledTimes(1);
     expect(DEFAULT_PROPS.handleAdd).toBeCalledWith(DEFAULT_PROPS.product.id);
   });
+
   test('subtract button', () => {
     renderComponent({
       product: {
@@ -106,6 +112,7 @@ describe('fires callback on button click', () => {
       DEFAULT_PROPS.product.id
     );
   });
+
   test('remove button', () => {
     renderComponent();
     userEvent.click(screen.getByRole('button', { name: /\x/i }));

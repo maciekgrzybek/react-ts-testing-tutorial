@@ -21,26 +21,30 @@ const renderComponent = (props: Partial<Props> = {}) => {
     },
   };
 };
+
 test('shows the correct products', () => {
   renderComponent();
   DEFAULT_PROPS.products.forEach(({ name }) => {
     expect(screen.getByText(name)).toBeInTheDocument();
   });
 });
+
 test('shows the correct order price', () => {
   renderComponent();
-  const expectedPrice = DEFAULT_PROPS.products.reduce((total, next) => {
-    return total + next.price;
-  }, 0);
+  const expectedPrice = 354.65;
+
   expect(
-    screen.getByText(new RegExp(expectedPrice.toString(), 'i'))
+    screen.getByText(new RegExp(`${expectedPrice}`, 'i'))
   ).toBeInTheDocument();
 });
+
 describe('shows the correct delivery price', () => {
+
   test('when free delivery price was not exceed', () => {
     renderComponent();
     expect(screen.getByText(/30.00/i)).toBeInTheDocument();
   });
+
   test('when free delivery price was exceed', () => {
     renderComponent({
       products: [
@@ -60,19 +64,17 @@ describe('shows the correct delivery price', () => {
   });
 });
 describe('shows the correct total price', () => {
+
   test('when free delivery price was not exceed', () => {
     renderComponent();
-    const expectedPrice =
-      DEFAULT_PROPS.products.reduce((total, next) => {
-        return total + next.price;
-      }, 0) + 30;
+    const expectedPrice = 384.65;
     expect(screen.getByText(/in total:/i)).toHaveTextContent(
-      new RegExp(expectedPrice.toString(), 'i')
+      new RegExp(`${expectedPrice}`, 'i')
     );
   });
 
   test('when free delivery price was exceed', () => {
-    const { props } = renderComponent({
+    renderComponent({
       products: [
         ...DEFAULT_PROPS.products,
         {
@@ -87,15 +89,14 @@ describe('shows the correct total price', () => {
       ],
     });
 
-    const expectedPrice = props.products.reduce((total, next) => {
-      return total + next.price;
-    }, 0);
+    const expectedPrice = 504.65;
 
     expect(screen.getByText(/in total:/i)).toHaveTextContent(
-      new RegExp(expectedPrice.toString(), 'i')
+      new RegExp(`${expectedPrice}`, 'i')
     );
   });
 });
+
 test('allows to apply a valid promo code', () => {
   renderComponent();
   const { name, discount } = DEFAULT_PROPS.promoCodes[0];
@@ -104,9 +105,10 @@ test('allows to apply a valid promo code', () => {
   userEvent.click(screen.getByRole('button', { name: /apply/i }));
 
   expect(screen.getByText(/discount applied: /i)).toHaveTextContent(
-    discount.toString()
+    `${discount}`
   );
 });
+
 test('does not allow to apply invalid promo code', () => {
   renderComponent();
 
@@ -126,24 +128,17 @@ test('does not allow to apply invalid promo code', () => {
 test('updates the prices accordingly when valid promo code is applied', () => {
   renderComponent();
 
-  const { name, discount } = DEFAULT_PROPS.promoCodes[0];
+  const { name } = DEFAULT_PROPS.promoCodes[0];
 
   userEvent.type(screen.getByRole('textbox'), name);
   userEvent.click(screen.getByRole('button', { name: /apply/i }));
 
-  const orderPrice = DEFAULT_PROPS.products.reduce((acc, next) => {
-    return (
-      acc +
-      next.quantity *
-        next.price *
-        (discount && next.promoAvailable ? (100 - discount) / 100 : 1)
-    );
-  }, 0);
+  const orderPrice = 314.21;
 
   expect(
-    screen.getByText(new RegExp(orderPrice.toFixed(2), 'i'))
+    screen.getByText(new RegExp(`${orderPrice}`, 'i'))
   ).toBeInTheDocument();
   expect(screen.getByText(/in total:/i)).toHaveTextContent(
-    new RegExp((orderPrice + 30).toFixed(2), 'i')
+    new RegExp(`${orderPrice + 30}`, 'i')
   );
 });

@@ -1,7 +1,7 @@
 import styles from './Prices.module.css';
 
 interface Props {
-  orderPrice: string;
+  orderPrice: number;
   deliveryPrice: number;
 }
 const Prices: React.FC<Props> = ({ orderPrice, deliveryPrice }) => {

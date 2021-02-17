@@ -35,8 +35,13 @@ const Cart: React.FC<Props> = ({
     );
   }, 0);
 
-  const deliveryPrice = orderPrice > freeDeliveryPrice ? 0 : 30;
-  const totalPrice = (orderPrice + deliveryPrice).toFixed(2);
+  // we round the price to 2 decimal places
+  const formattedOrderPrice = parseFloat(
+    (Math.round(orderPrice * 100) / 100).toFixed(2)
+  );
+
+  const deliveryPrice = formattedOrderPrice > freeDeliveryPrice ? 0 : 30;
+  const totalPrice = (formattedOrderPrice + deliveryPrice).toFixed(2);
 
   const handlePromoCode = useCallback((code: string) => {
     const promotion = promoCodes.find((promoCode) => promoCode.name === code);
@@ -79,7 +84,7 @@ const Cart: React.FC<Props> = ({
         </ul>
 
         <Prices
-          orderPrice={orderPrice.toFixed(2)}
+          orderPrice={formattedOrderPrice}
           deliveryPrice={deliveryPrice}
         />
 
